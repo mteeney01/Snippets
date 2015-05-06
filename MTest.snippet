@@ -19,27 +19,55 @@
           <Type>string</Type>
           <ToolTip>Underscore separated test name</ToolTip>
           <Default>do_the_action</Default>
-          <Function />
+          <Function></Function>
         </Object>
         <Object Editable="true">
           <ID>context</ID>
           <Type>string</Type>
           <ToolTip>The context of test class.</ToolTip>
           <Default>Context</Default>
+          <Function></Function>
+        </Object>
+        <Object Editable="true">
+          <ID>underTestType</ID>
+          <Type>string</Type>
+          <ToolTip>The type under test</ToolTip>
+          <Default>string</Default>
+          <Function />
+        </Object>
+        <Object Editable="true">
+          <ID>underTest</ID>
+          <Type>string</Type>
+          <ToolTip>Under test variable name</ToolTip>
+          <Default>underTest</Default>
+          <Function />
+        </Object>
+        <Object Editable="true">
+          <ID>resultType</ID>
+          <Type>string</Type>
+          <ToolTip>Result type</ToolTip>
+          <Default>resultType</Default>
+          <Function />
+        </Object>
+        <Object Editable="true">
+          <ID>result</ID>
+          <Type>string</Type>
+          <ToolTip>Result variable name</ToolTip>
+          <Default>result</Default>
           <Function />
         </Object>
       </Declarations>
       <Code Language="csharp" Kind="type decl" Delimiter="$"><![CDATA[class when_I_$testName$ : $context$
 {
-	static int underTest;
-	static string result;
+	static $underTestType$ $underTest$;
+	static $resultType$ $result$;
 
 	Establish context = () => 
 	{
-		underTest = 123456;
+		$underTest$ = 123456;
 	};
-	Because of = () => { result = underTest.ToString(); };
-	It has_tests = () => { result.ShouldEqual("123456"); };
+	Because of = () => { $result$ = $underTest$.ToString(); };
+	It has_tests = () => { $result$.ShouldEqual("123456"); };
 }]]></Code>
     </Snippet>
   </CodeSnippet>
