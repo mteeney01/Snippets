@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>MS Test Snippet</Title>
+      <Author>M Teeney</Author>
+      <Description>Generates an MSpec</Description>
+      <HelpUrl></HelpUrl>
+      <SnippetTypes />
+      <Keywords />
+      <Shortcut>mtest</Shortcut>
+    </Header>
+    <Snippet>
+      <References />
+      <Imports />
+      <Declarations>
+        <Object Editable="true">
+          <ID>testName</ID>
+          <Type>string</Type>
+          <ToolTip>Underscore separated test name</ToolTip>
+          <Default>do_the_action</Default>
+          <Function />
+        </Object>
+        <Object Editable="true">
+          <ID>context</ID>
+          <Type>string</Type>
+          <ToolTip>The context of test class.</ToolTip>
+          <Default>Context</Default>
+          <Function />
+        </Object>
+      </Declarations>
+      <Code Language="csharp" Kind="type decl" Delimiter="$"><![CDATA[class when_I_$testName$ : $context$
+{
+	static int underTest;
+	static string result;
+
+	Establish context = () => 
+	{
+		underTest = 123456;
+	};
+	Because of = () => { result = underTest.ToString(); };
+	It has_tests = () => { result.ShouldEqual("123456"); };
+}]]></Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>
